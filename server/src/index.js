@@ -4,6 +4,7 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import cors from 'cors';
 import config from 'config';
 import logger from './utils/logger';
+import formatError from './errors/formatError';
 
 import schema from './schema';
 
@@ -22,8 +23,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.set('port', config.get('port'));
 
+const buildOptions = {
+  schema,
+  formatError,
+  logger: { log: e => logger.debug(e) },
+};
+
 // The GraphQL endpoint
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphql', bodyParser.json(), graphqlExpress(buildOptions));
 
 // GraphiQL, a visual editor for queries
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
