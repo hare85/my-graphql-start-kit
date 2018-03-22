@@ -32,7 +32,9 @@
     "express": "^4.16.3",
     "graphql": "^0.13.2",
     "graphql-tools": "^2.23.1",
+    "mysql2": "^1.5.3",
     "pino": "^4.15.0",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "sequelize": "^4.37.4"
   }
 }

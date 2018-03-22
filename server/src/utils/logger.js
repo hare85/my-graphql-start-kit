@@ -12,7 +12,7 @@ const default_logger = logger.child({ operationName: 'main' });
 module.exports = logger;
 module.exports.getLogger = (operationName = null) => {
   if (operationName === null) return default_logger;
-  return pino.child({ operationName });
+  return logger.child({ operationName });
 };
 module.exports.setLevel = (level) => {
   logger.level = level;
