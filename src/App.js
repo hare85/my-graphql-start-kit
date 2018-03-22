@@ -1,9 +1,14 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import Counter from './containers/Counter';
 import logo from './logo.svg';
 import './App.css';
 
-const links = [{ to: '/', text: 'Home' }, { to: '/about', text: 'About' }];
+const links = [
+  { to: '/', text: 'Home' },
+  { to: '/about', text: 'About' },
+  { to: '/counter', text: 'Counter' },
+];
 
 const Home = () => (
   <div>
@@ -27,7 +32,7 @@ const App = () => (
   <div className="App">
     <ul>
       {links.map(link => (
-        <li>
+        <li key={link.text.toLowerCase()}>
           <Link to={link.to} href={link.to}>
             {link.text}
           </Link>
@@ -39,6 +44,7 @@ const App = () => (
 
     <Route exact path="/" component={Home} />
     <Route path="/about" component={About} />
+    <Route path="/counter" component={Counter} />
   </div>
 );
 
